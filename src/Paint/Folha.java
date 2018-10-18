@@ -11,12 +11,8 @@ package Paint;
  */
 public class Folha {
     double altura, largura;
-    int numeroTriangulos = 0, numeroCirculos = 0, numeroRetangulos = 0;
-    
-    Triangulo[] listaTriangulo;
-    Retangulo[] listaRetangulo;
-    Circulo[] listaCirculo;
-    
+    int numeroForma = 0, numeroTriangulos = 0, numeroRetangulos = 0, numeroCirculos = 0;
+    Forma[] formas;
     int z = 0;
     
     /**
@@ -27,46 +23,39 @@ public class Folha {
     public Folha(double altura, double largura){
         this.altura = altura;
         this.largura = largura;
-        
-        listaTriangulo = new Triangulo[10];
-        listaRetangulo = new Retangulo[10];
-        listaCirculo = new Circulo[10];
+        formas = new Forma[10];
     }
-    
+
     /**
-     * adiciona um triangulo na folha
-     * 
-     * @param tri 
+     *
+     * @param largura
+     * @param altura
+     * @param x
+     * @param y
+     * @return
      */
-    public void adicionarTriangulo(Triangulo tri){
-        listaTriangulo[numeroTriangulos] = tri;
-        numeroTriangulos++;
-        tri.z = this.z;
-        z++;
+    public boolean estaDentro(double largura,double altura, double x, double y){
+        return(altura + y <= this.altura && largura + x <= this.largura);
     }
-    
+
+
     /**
-     * adiciona um retangulo na folha
-     * 
-     * @param ret 
+     *
+     * @param form
      */
-    public void adicionarRetangulo(Retangulo ret){
-        listaRetangulo[numeroRetangulos] = ret;
-        numeroRetangulos++; 
-        ret.z = this.z;
+    public void adicionarForma(Forma form){
+        formas[numeroForma] = form;
+        numeroForma++;
+        form.z = this.z;
         z++;
-    }
-    
-    /**
-     * adiciona um circulo na folha
-     * 
-     * @param cir 
-     */
-    public void adicionarCirculo (Circulo cir){
-        listaCirculo[numeroCirculos] = cir;
-        numeroCirculos++;
-        cir.z = this.z;
-        z++;
+        if(form instanceof Triangulo){
+            numeroTriangulos++;
+        } else if (form instanceof Circulo){
+            numeroCirculos++;
+        } else {
+            numeroRetangulos++;
+        }
+
     }
     
     /**
@@ -75,7 +64,7 @@ public class Folha {
      */
     public void resumo(){
         System.out.println("*************************************************************");        
-        System.out.println("Total de formas: " + (numeroTriangulos + numeroRetangulos + numeroCirculos));       
+        System.out.println("Total de formas: " + (numeroForma));
         System.out.println("Total de Triangulos: " + numeroTriangulos);
         System.out.println("Total de Circulos: " + numeroCirculos);
         System.out.println("Total de Retangulos: " + numeroRetangulos);
@@ -92,35 +81,35 @@ public class Folha {
     public void listarFormas(){       
     
         for(int c = 0; c < numeroCirculos; c++){
-            System.out.println("Area do Circulo: " + listaCirculo[c].area());
-            System.out.println("Perimetro do Circulo: " + listaCirculo[c].perimetro());
-            System.out.println("Raio do circulo: " + listaCirculo[c].raio);
-            System.out.println("Z: " + listaCirculo[c].z);
-            System.out.println("Posição x: " + listaCirculo[c].x);
-            System.out.println("Posição y: " + listaCirculo[c].y);
+            System.out.println("Area do Circulo: " + formas[c].area());
+            System.out.println("Perimetro do Circulo: " + formas[c].perimetro());
+            System.out.println("Raio do circulo: " + formas[c].raio);
+            System.out.println("Z: " + formas[c].z);
+            System.out.println("Posição x: " + formas[c].x);
+            System.out.println("Posição y: " + formas[c].y);
             System.out.println("*************************************************************");
         }        
         
         for(int c = 0; c < numeroTriangulos; c++){
-            System.out.println("Altura do triangulo: " + listaTriangulo[c].altura);
-            System.out.println("Largura do triangulo: " + listaTriangulo[c].largura);
-            System.out.println("Area do triangulo: " + listaTriangulo[c].area());
-            System.out.println("Perimetro do triangulo: " + listaTriangulo[c].perimetro());
-            System.out.println("Cor do triangulo: " + listaTriangulo[c].cor);
-            System.out.println("Z: " + listaTriangulo[c].z);
-            System.out.println("Posição x: " + listaTriangulo[c].x);
-            System.out.println("Posição y: " + listaTriangulo[c].y);
+            System.out.println("Altura do triangulo: " + formas[c].altura);
+            System.out.println("Largura do triangulo: " + formas[c].largura);
+            System.out.println("Area do triangulo: " + formas[c].area());
+            System.out.println("Perimetro do triangulo: " + formas[c].perimetro());
+            System.out.println("Cor do triangulo: " + formas[c].cor);
+            System.out.println("Z: " + formas[c].z);
+            System.out.println("Posição x: " + formas[c].x);
+            System.out.println("Posição y: " + formas[c].y);
             System.out.println("*************************************************************");
         }       
     
         for(int c = 0; c < numeroRetangulos; c++){
-            System.out.println("Area do retangulo: " + listaRetangulo[c].area());
-            System.out.println("Perimetro do retangulo: " + listaRetangulo[c].perimetro());
-            System.out.println("Altura do retangulo: " + listaRetangulo[c].altura);
-            System.out.println("Largura do retangulo: " + listaRetangulo[c].largura);   
-            System.out.println("Z: " + listaRetangulo[c].z);
-            System.out.println("Posição x: " + listaRetangulo[c].x);
-            System.out.println("Posição y: " + listaRetangulo[c].y);
+            System.out.println("Area do retangulo: " + formas[c].area());
+            System.out.println("Perimetro do retangulo: " + formas[c].perimetro());
+            System.out.println("Altura do retangulo: " + formas[c].altura);
+            System.out.println("Largura do retangulo: " + formas[c].largura);
+            System.out.println("Z: " + formas[c].z);
+            System.out.println("Posição x: " + formas[c].x);
+            System.out.println("Posição y: " + formas[c].y);
             System.out.println("*************************************************************");
         }        
     }
@@ -131,46 +120,46 @@ public class Folha {
     public void listarOrdenado(){        
         for(int c = 0; c < z; c++){            
             for(int k = 0; k < numeroCirculos; k++){
-                if(listaCirculo[k].z == c){
+                if(formas[k].z == c){
                     System.out.println("*************************************************************");
                     System.out.println("O elemento " + (c+1) + " é um circulo");
-                    System.out.println("Area do Circulo: " + listaCirculo[k].area());
-                    System.out.println("Perimetro do Circulo: " + listaCirculo[k].perimetro());
-                    System.out.println("Raio do circulo: " + listaCirculo[k].raio);
-                    System.out.println("Z: " + listaCirculo[k].z);
-                    System.out.println("Posição x: " + listaCirculo[k].x);
-                    System.out.println("Posição y: " + listaCirculo[k].y);
+                    System.out.println("Area do Circulo: " + formas[k].area());
+                    System.out.println("Perimetro do Circulo: " + formas[k].perimetro());
+                    System.out.println("Raio do circulo: " + formas[k].raio);
+                    System.out.println("Z: " + formas[k].z);
+                    System.out.println("Posição x: " + formas[k].x);
+                    System.out.println("Posição y: " + formas[k].y);
                     System.out.println("*************************************************************");
                 }   
             } 
               
             for(int k = 0; k < numeroRetangulos; k++){
-                if(listaRetangulo[k].z == c){
+                if(formas[k].z == c){
                     System.out.println("*************************************************************");
                     System.out.println("O elemento " + (c+1) + " é um retangulo");
-                    System.out.println("Area do retangulo: " + listaRetangulo[k].area());
-                    System.out.println("Perimetro do retangulo: " + listaRetangulo[k].perimetro());
-                    System.out.println("Altura do retangulo: " + listaRetangulo[k].altura);
-                    System.out.println("Largura do retangulo: " + listaRetangulo[k].largura);   
-                    System.out.println("Z: " + listaRetangulo[k].z);
-                    System.out.println("Posição x: " + listaRetangulo[k].x);
-                    System.out.println("Posição y: " + listaRetangulo[k].y);
+                    System.out.println("Area do retangulo: " + formas[k].area());
+                    System.out.println("Perimetro do retangulo: " + formas[k].perimetro());
+                    System.out.println("Altura do retangulo: " + formas[k].altura);
+                    System.out.println("Largura do retangulo: " + formas[k].largura);
+                    System.out.println("Z: " + formas[k].z);
+                    System.out.println("Posição x: " + formas[k].x);
+                    System.out.println("Posição y: " + formas[k].y);
                     System.out.println("*************************************************************");
                 }
             }
             
             for(int k = 0; k < numeroTriangulos; k++){
-                if(listaTriangulo[k].z == c){
+                if(formas[k].z == c){
                     System.out.println("*************************************************************");
                     System.out.println("O elemento " + (c+1) + " é um triangulo");
-                    System.out.println("Altura do triangulo: " + listaTriangulo[k].altura);
-                    System.out.println("Largura do triangulo: " + listaTriangulo[k].largura);
-                    System.out.println("Area do triangulo: " + listaTriangulo[k].area());
-                    System.out.println("Perimetro do triangulo: " + listaTriangulo[k].perimetro());
-                    System.out.println("Cor do triangulo: " + listaTriangulo[k].cor);
-                    System.out.println("Z: " + listaTriangulo[k].z);
-                    System.out.println("Posição x: " + listaTriangulo[k].x);
-                    System.out.println("Posição y: " + listaTriangulo[k].y);
+                    System.out.println("Altura do triangulo: " + formas[k].altura);
+                    System.out.println("Largura do triangulo: " + formas[k].largura);
+                    System.out.println("Area do triangulo: " + formas[k].area());
+                    System.out.println("Perimetro do triangulo: " + formas[k].perimetro());
+                    System.out.println("Cor do triangulo: " + formas[k].cor);
+                    System.out.println("Z: " + formas[k].z);
+                    System.out.println("Posição x: " + formas[k].x);
+                    System.out.println("Posição y: " + formas[k].y);
                     System.out.println("*************************************************************");
                 }                
             } 

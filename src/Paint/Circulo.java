@@ -9,12 +9,7 @@ package Paint;
  *
  * @author Felpi
  */
-public class Circulo {
-    double raio;
-    
-    int z = 0;
-    
-    double x=0,y=0;
+public class Circulo extends Forma{
     
     /**
      * 
@@ -27,21 +22,23 @@ public class Circulo {
         this.x = x;
         this.y = y;
     }
-    
+
+
     /**
-     * 
-     * @return area do circulo
+     *
+     * @return
      */
+    @Override
     public double area(){
         return raio * raio * 3.14159265359;
     }
-    
+
     /**
      * 
      * @return perimetro do circulo
      */
+    @Override
     public double perimetro(){
         return 2 * raio * 3.14159265359;
     }
-    
 }

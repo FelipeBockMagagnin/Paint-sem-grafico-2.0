@@ -9,19 +9,13 @@ package Paint;
  * 
  * @author Felpi
  */
-public class Triangulo { 
-    
-  double altura;
-  double largura;
-  String cor;  
-  int z = 0;  
-  double x=0,y=0;
-  
+public class Triangulo extends Forma {
   
   /**
    *  
    * @return a area do triangulo 
    */
+  @Override
   public double area() {
     return altura*largura/2.0;
   }
@@ -30,6 +24,7 @@ public class Triangulo {
    * 
    * @return o perimetro do triangulo 
    */
+  @Override
   public double perimetro(){
       return altura + largura + Math.sqrt(Math.pow(altura, 2) + Math.pow(largura,2));
   }

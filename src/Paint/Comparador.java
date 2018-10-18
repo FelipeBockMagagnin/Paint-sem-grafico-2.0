@@ -5,70 +5,33 @@
  */
 package Paint;
 
+import java.text.Normalizer;
+
 /**
  *
  * @author Felpi
  */
-public class Comparador {  
-    
-  /** 
-   * 
-   * @param ret
-   * @param tri
-   * @return se ret maior retorna true
-   */  
-  public boolean maiorAreaRetTri(Retangulo ret, Triangulo tri) {
-      return ret.area() > tri.area();
-  }
-  
-  /**
-   * 
-   * @param tri
-   * @param cir
-   * @return se tri maior retorna true
-   */
-  public boolean maiorAreaTriCir (Triangulo tri, Circulo cir){
-      return tri.area() > cir.area();
-  } 
-  
-  /**
-   * 
-   * @param ret
-   * @param cir
-   * @return se ret maior retorna true 
-   */
-  public boolean maiorAreaRetCir (Retangulo ret, Circulo cir){
-      return ret.area() > cir.area();
-  } 
-  
-  /**
-   * 
-   * @param ret
-   * @param cir
-   * @return se ret maior retorna true 
-   */
-  public boolean maiorPerimetroRetCir (Retangulo ret, Circulo cir){
-      return ret.perimetro() > cir.perimetro();
-  } 
-  
-  /**
-   * 
-   * @param tri
-   * @param cir
-   * @return se tri maior retorna true
-   */
-  public boolean maiorPerimetroTriCir (Triangulo tri, Circulo cir){
-      return tri.perimetro() > cir.perimetro();
-  } 
-  
-  /**
-   * 
-   * @param ret
-   * @param tri
-   * @return se ret maior retorna true
-   */
-  public boolean maiorPerimetroRetTri (Retangulo ret, Triangulo tri){
-      return ret.perimetro() > tri.perimetro();
-  } 
+public class Comparador {
+
+    /**
+     *
+     * @param form1
+     * @param form2
+     * @return
+     */
+    public boolean comparaArea(Forma form1, Forma form2) {
+        return form1.area() > form2.area();
+    }
+
+    /**
+     *
+     * @param form1
+     * @param form2
+     * @return
+     */
+    public boolean comparaPerimetro(Forma form1, Forma form2) {
+        return form1.perimetro() > form2.perimetro();
+    }
 }
+
 

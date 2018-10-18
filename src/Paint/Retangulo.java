@@ -1,28 +1,16 @@
-
 package Paint;
 
 /**
  *
  * @author Felpi
  */
-public class Retangulo {
-  /* As classes podem conter basicamente:
-   * Dados: chamados em POO de atributos, membros, campos, propriedades.
-   * Procedimentos/Funções: chamados em POO de métodos.
-   */
-  
-  // atributos
-  double altura;
-  double largura;
-  
-  int z = 0;
-  
-  double x=0,y=0;  
+public class Retangulo extends Forma {
   
   /**
    * 
    * @return area do retangulo
    */
+  @Override
   public double area() {
     return altura*largura;
   }
@@ -31,10 +19,11 @@ public class Retangulo {
    * 
    * @return area do perimetro 
    */
+  @Override
   public double perimetro(){
       return (altura*2) + (largura * 2);
   }
-  
+
   /**
    * 
    * @param altura
@@ -47,6 +36,7 @@ public class Retangulo {
     this.altura = altura;
     this.x = x;
     this.y = y;
+    this.z = 0;
   }
   
 }

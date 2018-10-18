@@ -12,7 +12,9 @@ public class IntroOOP {
    * @param args the command line arguments
    */
     public static void main(String[] args) {  
-      
+
+
+
         int input;
         double altura,largura,raio,folhaAltura,folhaLargura,x,y;
       
@@ -27,7 +29,6 @@ public class IntroOOP {
         folhaLargura = scan.nextDouble();
     
         Folha folha = new Folha(folhaAltura, folhaLargura);
-
 
         do{
             System.out.println("****************************************************");
@@ -56,10 +57,10 @@ public class IntroOOP {
                     System.out.print("Escreva a altura");
                     altura = scan.nextDouble();
 
-                    if((largura + x) <= folhaLargura && (altura + y) <= folhaAltura){
+                    if(folha.estaDentro(largura, altura, x,y)){
                         Retangulo ret = new Retangulo(altura,largura,x,y);
-                        folha.adicionarRetangulo(ret);
-                        som.adicionarRetangulo(ret);
+                        folha.adicionarForma(ret);
+                        som.adicionarForma(ret);
                     } else {
                         System.out.println("Error");
                         System.out.println("****************************************************");
@@ -75,10 +76,10 @@ public class IntroOOP {
 
                     System.out.print("Escreva o raio");
                     raio = scan.nextDouble();
-                    if((raio + y) <= folhaAltura && (raio + x) <= folhaLargura){
+                    if(folha.estaDentro(raio, raio, x,y)){
                         Circulo cir = new Circulo (raio,x,y);
-                        folha.adicionarCirculo(cir);
-                        som.adicionarCirculo(cir);
+                        folha.adicionarForma(cir);
+                        som.adicionarForma(cir);
                     } else {
                         System.out.println("");
                         System.out.println("Error");
@@ -99,10 +100,10 @@ public class IntroOOP {
                     System.out.print("Escreva a altura");
                     altura = scan.nextDouble();
 
-                    if((largura + x) <= folhaLargura && (altura + y) <= folhaAltura){
+                    if(folha.estaDentro(largura, altura, x,y)){
                         Triangulo tri = new Triangulo(altura,largura,"a",x,y);
-                        folha.adicionarTriangulo(tri);
-                        som.adicionarTriangulo(tri);
+                        folha.adicionarForma(tri);
+                        som.adicionarForma(tri);
                     } else {
                         System.out.println("Error");
                         System.out.println("****************************************************");
